@@ -44,7 +44,7 @@ import com.mojang.authlib.GameProfile
   modid = "showstopper",
   modLanguage = "scala",
   acceptableRemoteVersions = "*",
-  version = "1.0"
+  version = "1.0.1"
 )
 object ShowStopper {
 
@@ -68,7 +68,7 @@ class StapCommand extends CommandBase {
     val gp:GameProfile = server.getPlayerList().getWhitelistedPlayers().getByName(sender.getName)
     if (server.getPlayerList.getWhitelistedPlayers.isWhitelisted(gp)) {
       server.getPlayerList.sendChatMsg(new TextComponentString(AQUA + sender.getName + RESET +":"+ GOLD +
-        " Issued the restart command \n"+ RED +"Restarting in 15 seconds"))
+        " Issued a stop command \n"+ RED +"The Server will be stopping in 15 seconds"))
 
       try {
         new Timer().schedule(new TimerTask {
