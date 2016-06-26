@@ -44,7 +44,7 @@ import com.mojang.authlib.GameProfile
   modid = "showstopper",
   modLanguage = "scala",
   acceptableRemoteVersions = "*",
-  version = "1.0.1"
+  version = "1.1.0"
 )
 object ShowStopper {
 
@@ -65,7 +65,7 @@ class StapCommand extends CommandBase {
 
   @throws[CommandException]
   override def execute(server: MinecraftServer, sender: ICommandSender, args: Array[String]): Unit = {
-    val gp:GameProfile = server.getPlayerList().getWhitelistedPlayers().getByName(sender.getName)
+    val gp:GameProfile = server.getPlayerProfileCache.getProfileByUUID(sender.getCommandSenderEntity.getUniqueID)
     if (server.getPlayerList.getWhitelistedPlayers.isWhitelisted(gp)) {
       server.getPlayerList.sendChatMsg(new TextComponentString(AQUA + sender.getName + RESET +":"+ GOLD +
         " Issued a stop command \n"+ RED +"The Server will be stopping in 15 seconds"))
